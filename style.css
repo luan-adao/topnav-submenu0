@@ -1,0 +1,97 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+.flex.alg-center {
+    align-items: center;
+}
+.flex.jst-center {
+    justify-content: center;
+}
+.flex.dir-col {
+    flex-direction: column;
+}
+
+.default-border {
+    border: 1px solid;
+}
+.default-border.black {
+    border-color: #000;
+}
+.default-border.red {
+    border-color: #ff0000;
+}
+
+.default-nav-bg {
+    background: linear-gradient(#949492, #5c5c5b, #2e2e2e);
+}
+
+.default-subnav-bg {
+    background: linear-gradient(to left, #949492, #5c5c5b, #2e2e2e);
+}
+
+.default-nav-link a:hover {
+    background: linear-gradient(#2e2e2e, #0f0f0f, #2e2e2e);
+}
+
+
+.navbar {
+    background-color: #fff;
+    height: 4rem;
+    max-height: 4rem;
+    position: fixed;
+    width: 100vw;
+
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style: none;
+}
+
+.nav-ul {
+    position: relative;
+    margin-left: 1em;
+}
+
+.nav-ul > li > a {
+    padding: 1.4em 2em;
+}
+
+.nav-ul > li > a.insubmenu {
+    background-color: #000;
+    color: #fff;
+}
+
+.nav-ul a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.navbar .subnav-ul {
+    position: absolute;
+    top: 2.6em;
+    margin-left: 1.5em;
+    justify-content: space-between;
+    display: none;
+    overflow: hidden;
+}
+.navbar .subnav-ul li {
+    padding: 1em 0;
+}
+.navbar .subnav-ul a {
+    padding: 1em 2em;
+}
