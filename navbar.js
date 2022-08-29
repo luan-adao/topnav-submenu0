@@ -9,16 +9,7 @@ function animateMenu(dir, element) {
         direction: dir
     });
 }
-function changeSubnavStatus(subnav) {
-    let subnavStatus = subnav.style.display;
-    console.log(subnavStatus);
-    switch (subnavStatus) {
-        case "block":
-            subnav.style.display = "none";
-        case "none":
-            subnav.style.display = "block";
-    }
-}
+
 
 let myNavbarUl = document.querySelector(".nav-ul");
 let myNavLink = myNavbarUl.getElementsByClassName("nav-link");
@@ -26,15 +17,14 @@ let myNavLink = myNavbarUl.getElementsByClassName("nav-link");
 function navbarMenusMod(linkNumber) {
     let link = myNavLink[linkNumber];
     let mySubnav = myNavLink[linkNumber].nextElementSibling;
-    mySubnav.style.display = "none";
 
     myNavLink[linkNumber].addEventListener("mouseover", function() {
-        changeSubnavStatus(mySubnav);
+        mySubnav.style.display = "block";
         animateMenu("normal", mySubnav);
     });
 
     myNavLink[linkNumber].addEventListener("mouseout", function() { 
-        //animateMenu("reverse", subnavMenu);
+        animateMenu("reverse", subnavMenu);
         mySubnav.style.display = "none";
         //setTimeout(function(){subnavMenu.style.display = "none"}, 100);
     });
@@ -42,13 +32,11 @@ function navbarMenusMod(linkNumber) {
     mySubnav.addEventListener("mouseover", function() {
         mySubnav.style.display = "block";
         link.className += " insubmenu";
-        console.log(link.className);
     });
 
     mySubnav.addEventListener("mouseout", function() {
         mySubnav.style.display = "none";
         link.className = "nav-link";
-        console.log(link.className);
     });
 }
 
