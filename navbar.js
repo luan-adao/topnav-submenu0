@@ -2,14 +2,13 @@
 function animateMenu(dir, element) {
     let elmHeight = element.offsetHeight += "px";
     element.animate ([
-        {height: "0", opacity: 0},
-        {height: elmHeight, opacity: 1}
+        {height: "0"},
+        {height: elmHeight}
     ], {
         duration: 100,
         direction: dir
     });
 }
-
 
 let myNavbarUl = document.querySelector(".nav-ul");
 let myNavLink = myNavbarUl.getElementsByClassName("nav-link");
@@ -24,7 +23,7 @@ function navbarMenusMod(linkNumber) {
     });
 
     myNavLink[linkNumber].addEventListener("mouseout", function() { 
-        animateMenu("reverse", subnavMenu);
+        //animateMenu("reverse", mySubnav);
         mySubnav.style.display = "none";
         //setTimeout(function(){subnavMenu.style.display = "none"}, 100);
     });
@@ -34,8 +33,10 @@ function navbarMenusMod(linkNumber) {
         link.className += " insubmenu";
     });
 
-    mySubnav.addEventListener("mouseout", function() {
-        mySubnav.style.display = "none";
+    mySubnav.addEventListener("mouseleave", function() {
+        animateMenu("reverse", mySubnav);
+        //mySubnav.style.display = "none";
+            setTimeout(function(){mySubnav.style.display = "none"}, 50);
         link.className = "nav-link";
     });
 }
