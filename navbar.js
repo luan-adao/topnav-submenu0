@@ -45,4 +45,14 @@ for (i = 0; i < myNavLink.length; i++) {
     navbarMenusMod(i);
 }
 
+const myNavMenu = document.getElementById("nav_menu"); 
+const myNavMenuClassName = myNavMenu.className;
 
+function showNav() {
+    if (myNavMenu.className == myNavMenuClassName) {
+        myNavMenu.className += " show";
+        console.log(myNavMenu.className);
+    } else {
+        myNavMenu.className = myNavMenuClassName;
+    }
+}
