@@ -5,6 +5,7 @@
 
 html, body {
     width: 100%;
+    font-family: "noto sans";
 }
 
 .flex {
@@ -52,6 +53,10 @@ html, body {
     position: fixed;
 }
 
+.pos-relative {
+    position: relative;
+}
+
 .navbar {
     background-color: #fff;
     height: 4rem;
@@ -63,10 +68,11 @@ html, body {
 
 .mobile-nav-container {
     display: none;
+    border: 1px solid green;
 }
 
 .search-field {
-    width: 300px;
+    width: 100px;
     height: 2rem;
     font-size: 1.2rem;
     border-radius: 5px;
@@ -74,8 +80,15 @@ html, body {
     margin-right: 5px;
 }
 
+@keyframes searchFieldFocus {
+    from {width: 100px;}
+    to {width: 300px;}
+}
+
 .search-field:focus {
     box-shadow: 1px 0 1em;
+    animation: searchFieldFocus 500ms;
+    width: 300px;
 }
 
 .search-button {
@@ -111,7 +124,8 @@ html, body {
 }
 
 .nav-ul > li > a {
-    padding: 1.4em 2em;
+    padding: 1.3em 2em;
+    margin: 0;
 }
 
 .nav-ul > li > a.insubmenu {
@@ -124,7 +138,7 @@ html, body {
     border-radius: 5px;
 }
 
-.navbar .subnav-ul {
+.subnav-ul {
     position: absolute;
     top: 3em;
     margin-left: 1.5em;
@@ -133,22 +147,24 @@ html, body {
     overflow: hidden;
     border-radius: 0 4px 4px 4px;
 }
-.navbar .subnav-ul li {
+.subnav-ul li {
     padding: 1em 0;
 }
-.navbar .subnav-ul a {
+.subnav-ul a {
     padding: 1em 2em;
 }
 
 @media screen and (max-width: 400px) {
     .navbar, .nav-ul {
         flex-direction: column;
+        justify-content: flex-start;
     }
     .navbar {
         height: auto;
     }
     .mobile-nav-container {
         width: 95%;
+        max-height: 4em;
         display: flex;
     }
     .mobile-menu-button {
@@ -156,14 +172,28 @@ html, body {
     }
     .nav-ul {
         display: none;
-        justify-content: flex-start;
         margin: 0;
+    }
+    .nav-ul > li > a {
+        font-size: 1.5em;
+        padding: 0;
+    }
+    .nav-ul li {
+        margin: 4px 0;
     }
     .search-container {
         flex-direction: column;
-    }
-    .search-container .search-button {
         margin-top: 10px;
+    }
+    .search-field {
+        width: 300px;
+    }
+    .search-field:focus {
+        animation: none;
+    }
+    .search-button {
+        margin-top: 5px;
+        margin-bottom: 10px;
     }
 }
 

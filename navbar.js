@@ -1,25 +1,40 @@
 //submenu animation
-function animateMenu(dir, element) {
-    let elmHeight = element.offsetHeight += "px";
+function animateMenu(dir, minHeight, maxHeight, dur, element) {
     element.animate ([
-        {height: "0"},
-        {height: elmHeight}
+        {height: minHeight},
+        {height: maxHeight}
     ], {
-        duration: 100,
+        duration: dur,
         direction: dir
     });
 }
 
-let myNavbarUl = document.querySelector(".nav-ul");
-let myNavLink = myNavbarUl.getElementsByClassName("nav-link");
+const myNavMenu = document.getElementById("nav_menu"); 
+const myNavMenuClassName = myNavMenu.className;
+const myNavbar = document.querySelector("#top_navbar");
+
+let myNavLink = myNavMenu.getElementsByClassName("nav-link");
+
+function showNav() {
+    if (myNavMenu.className == myNavMenuClassName) {
+        myNavMenu.className += " show";
+        //setTimeout(function(){myNavMenu.className += " show"}, 50);
+        animateMenu("normal", "4em", myNavbar.offsetHeight+="px", 100, myNavbar);
+        console.log(myNavMenu.className);
+    } else {
+        animateMenu("reverse", "4em", myNavbar.offsetHeight+="px", 100, myNavbar);
+        myNavMenu.className = myNavMenuClassName;
+    }
+}
 
 function navbarMenusMod(linkNumber) {
     let link = myNavLink[linkNumber];
     let mySubnav = myNavLink[linkNumber].nextElementSibling;
+    let subnavHeight = mySubnav.offsetHeight;
 
     myNavLink[linkNumber].addEventListener("mouseover", function() {
         mySubnav.style.display = "block";
-        animateMenu("normal", mySubnav);
+        animateMenu("normal", "0",mySubnav.offsetHeight+="px", 100, mySubnav);
     });
 
     myNavLink[linkNumber].addEventListener("mouseout", function() { 
@@ -34,9 +49,9 @@ function navbarMenusMod(linkNumber) {
     });
 
     mySubnav.addEventListener("mouseleave", function() {
-        animateMenu("reverse", mySubnav);
+        animateMenu("reverse", "0",mySubnav.offsetHeight+="px", 100, mySubnav);
         //mySubnav.style.display = "none";
-            setTimeout(function(){mySubnav.style.display = "none"}, 50);
+        setTimeout(function(){mySubnav.style.display = "none"}, 50);
         link.className = "nav-link";
     });
 }
@@ -45,14 +60,4 @@ for (i = 0; i < myNavLink.length; i++) {
     navbarMenusMod(i);
 }
 
-const myNavMenu = document.getElementById("nav_menu"); 
-const myNavMenuClassName = myNavMenu.className;
 
-function showNav() {
-    if (myNavMenu.className == myNavMenuClassName) {
-        myNavMenu.className += " show";
-        console.log(myNavMenu.className);
-    } else {
-        myNavMenu.className = myNavMenuClassName;
-    }
-}
